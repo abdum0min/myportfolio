@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-md-5 py-3 ">
+    <h1 class="head">Blogs</h1>
+</div>
+  <!-- blogs start -->
+  <div  class="blogs py-2 ">
+    <div class="container">
+        <div class="b-wrapper row py-1 row-gap-4 ">
+          {% for post in posts  %}
+            <div class="d-flex col-12 justify-content-center blog_item">
+              <div class="blog py-4 px-5" style="width: 100%;height: auto;">
+                <a href="{% url 'blog_detail' post.id %}" class="b-h3" style="margin-bottom: 20px;">{{ post.title }}</a>
+                <p class="b-s" style="margin-bottom: 20px;">{{post.created_at|date:'j M Y'}} | {% for tag in post.tags.all %}
+                  {{tag.name | capfirst}}{% if not forloop.last %},{%endif%}
+                  {% endfor %}</p>
+                <p class="b-p">{{post.content | striptags | safe | truncatewords:30 }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+  <!-- blogs end -->
+{% endblock  %}
+

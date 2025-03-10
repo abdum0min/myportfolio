@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container py-md-5 py-3 ">
+    <h1 class="head">Works</h1>
+</div>
+  <!-- works start -->
+  <div class="works py-md-5 py-3 ">
+    <div class="container">
+      <div class="row row-gap-3 ">
+        {% for work in works %}
+          <div class="col-lg-3 col-md-3 col-sm-12">
+            <a href="{% url 'work_detail' work.id %}"><img style="width: 100%; height: auto;" src="{{ work.image.url }}" alt=""></a>
+          </div>
+          <div class="col-lg-9 col-md-9 col-sm-12  d-flex justify-content-around flex-column row-gap-3">
+            <a href="{% url 'work_detail' work.id %}" class="w-h1">{{work.title}}</a>
+            <div class="div d-flex align-items-center gap-4">
+              <h4 class="w-h4 py-1 px-2 ">{{work.created_at | date:'Y' }}</h4>
+              <h5 class="w-p2">{% for tag in work.tags.all %}
+                {{tag.name | capfirst}}{% if not forloop.last %}, {%endif%}
+                {% endfor %}</h5>
+            </div>
+            <p class="w-p">{{ work.description | striptags | safe | truncatewords:30 }}</p>
+            <hr>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- works end -->
+{% endblock  %}

@@ -1,0 +1,346 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* heebo-regular - latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/heebo-v26-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* heebo-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Heebo';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/heebo-v26-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* nav start */
+  .item{
+    font-weight: 700;
+    font-family: 'Heebo';
+    font-size: 20px;
+    color: #000000;
+  }
+  .item:hover{
+    color: #7c7b79e7;
+  }
+  .activ{
+    color: #FF6464;
+  }
+  /* nav end */
+
+
+
+
+
+  /* header start */
+  /* .heading{
+    width: 60%;
+  }
+  .h-img{
+    width: 40%;
+  } */
+  .h-h1{
+    color: #21243D;
+    font-weight: 700;
+    font-family: 'Heebo';
+    font-size: 44px;
+  }
+  .h-p{
+    color: #21243D;
+    font-weight: 400;
+    font-family: 'Heebo';
+    font-size: 16px;
+  }
+  .h-a{
+    color: #ffffffff;
+    background: #FF6464;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    text-decoration: none;
+  }
+  .h-img-none{
+    display: none ;
+  }
+  /* header end */
+
+
+
+
+  /* blogs start */
+  .b-h4{
+    color: #21243D;
+    font-weight: 400;
+    font-family: 'Heebo';
+    font-size: 22px;
+  }
+  .b-h3{
+    color: #21243D;
+    font-weight: 700;
+    font-family: 'Heebo';
+    font-size: 26px;
+    text-decoration: none;
+  }
+  .b-h3:hover{
+    color: #00A8CC;
+  }
+  .b-s{
+    color: #21243D;
+    font-weight: 400;
+    font-family: 'Heebo';
+    font-size: 18px;
+  }
+  .b-p{
+    color: #21243D;
+    font-weight: 400;
+    font-family: 'Heebo';
+    font-size: 16px;
+  }
+  .blog{
+    background: #ffffffff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  .b-a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    color: #00A8CC;
+  }
+  .blog_item{
+    border-bottom: 1px rgb(192, 187, 187) solid;
+    padding-bottom: 25px;
+  }
+  /* blogs end */
+
+
+
+
+  /* works start */
+  .w-h1 , .w-h11{
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Heebo';
+    color: #21243D;
+  }
+  .w-h1:hover{
+    color: #00A8CC;
+  }
+  .w-p{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    color: #21243D;
+  }
+  .w-h4{
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Heebo';
+    color: #ffffffff;
+    background: #142850;
+    border-radius:50px ;
+  }
+  .w-p2{
+    color: #8695A4;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Heebo';
+  }
+  .w-h5{
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    color: #21243D;
+  }
+  /* works end */
+  /* detail start */
+  .detail_box{
+    border: 2px gainsboro solid;
+    background:#EDF7FA;
+    padding: 15px 15px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 40px;
+  }
+  .detail_img{
+    border-radius: 12px 12px 0 0;
+  }
+  .detail_big_box{
+    border: 2px solid #EDF7FA;
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+   p img{
+    width: 100% !important;
+    height: auto !important;
+  }
+  /* detail end */
+  /* comments start */
+  .comment_h4{
+    font-size: 28px;
+    font-family: 'Heebo';
+    font-weight: 400;
+    margin: 0;
+  }
+  .comment_box{
+    /* background: #EDF7FA; */
+    border-radius: 15px 15px 0 0 ;
+    padding: 15px 15px;
+    margin-bottom: 10px;
+  }
+  .comment_form{
+    border: 1px solid #FF6464;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px 0px #0A3A6426;
+
+  }
+  .comment_label{
+    font-size: 18px;
+    font-family: 'Heebo';
+    font-weight: 400;
+    margin: 0;
+  }
+  .comment_text{
+    font-size: 16px;
+    font-family: 'Heebo';
+    font-weight: 400;
+    margin-bottom: 15px;
+    line-height: 28px;
+  }
+  .comment_user{
+    font-size: 18px;
+    font-family: 'Heebo';
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 23px;
+  }
+  .comments_box{
+    background: #FFFFFF;
+    border: 2px gainsboro solid;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+  }
+  .comment{
+    padding: 0 15px;
+  }
+  /* comments end */
+  /* footer start */
+  .copyright{
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Heebo';
+    color: #21243D;
+  }
+  /* footer end */
+    /* navbar sm  */
+    .ix{
+      font-size: 30px;
+      color: #FFFFFF;
+    }
+    .container90{
+      width: 90%;
+      margin: auto;
+    }
+  
+    .menu{
+      display: none;
+      font-size: 30px;
+    }
+    .nv-modal{
+      background: #EDF7FA;
+      left: 30%;
+      z-index: 3;
+      top: 0px;
+      right: 30vw;
+      display: none;
+      position: fixed;
+      width: 70vw;
+      height: 100vh;
+    }
+    .fad{
+      animation: fad 1s;
+    }
+    .footer_icon{
+      font-size: 35px;
+      color: #21243D;
+    }
+    /* navbar sm */
+    .container2{
+      width: 50%;
+      margin: auto;
+    }
+    .head{
+      font-size: 44px;
+      font-weight: 700;
+      font-family: 'Heebo';
+      color: #21243D;
+    }
+    .head2{
+      font-size: 30px;
+      font-weight: 400;
+      font-family: 'Heebo';
+      color: #21243D;
+    }
+    @media screen and (max-width:992px) {
+      .container2{
+        width: 70%;
+      }
+      .h-img-none{
+        display: flex;
+      }
+      /* .h-img{
+        display: none !important;
+      } */
+      .h-h1 , .h-p {
+        text-align: center;
+      }
+      .h-a-div{
+        display: flex;
+        justify-content: center;
+      }
+      .h-wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+      }
+    }
+  @media screen and (max-width:800px) {
+    .container2{
+      width: 90%;
+    }
+    .btn-none{
+      display: none;
+    }
+    .ul-none{
+      display: none !important;
+    }
+    .menu{
+      display: block;
+    }
+  }
+  @keyframes fad {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+  @media screen and (max-width:1000px) {
+    .imgsss{
+      display: none !important;
+    }
+    .contact{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }

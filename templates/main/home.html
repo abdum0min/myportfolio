@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+      <!-- header start -->
+      <div class="header py-md-5 py-3 ">
+        <div class="container">
+            <div class="h-wrapper row ">
+                <div class="heading col-lg-8 col-md-12 d-flex flex-column  justify-content-center">
+                    <h1 style="margin-bottom: 30px;" class="h-h1">Hi, I am John, <br>Creative Technologist</h1>
+                    <p style="margin-bottom: 30px;" class="h-p">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet  sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+                    <div class="h-a-div"><a style="margin-bottom: 30px;" class="h-a py-2 px-4 " href="./resume/resume.pdf" >Download Resume</a></div>
+                </div>
+                <div class="h-img d-flex justify-content-center  col-lg-4 col-md-12">
+                    <img style="width: 90%;height: auto;" src="{% static './main/img/6109661.webp' %}" alt="">
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- header end -->
+
+
+
+
+      <!-- blogs start -->
+      <div style="background: #EDF7FA;" class="blogs py-3 ">
+        <div class="container">
+            <div class="div d-flex justify-content-between ">
+                <h4 class="b-h4">Recent posts</h4>
+                <a class="b-a" href="{% url 'blog' %}">View all</a>
+            </div>
+            <div class="b-wrapper row py-4 row-gap-5 ">
+              {% for post in posts %}
+                <div class="col-lg-6 col-md-12 d-flex justify-content-center  ">
+                  <div style="width: 90%; height: auto;" class="blog py-4 px-5 ">
+                      <p><a href="{% url 'blog_detail' post.id %}" class="b-h3 mb-5" >{{post.title}}</a></p>
+                      <p class="b-s" style="margin-bottom: 20px;">{{post.created_at|date:'j M Y'}} | {% for tag in post.tags.all %}
+                        {{tag.name | capfirst}}{% if not forloop.last %},{%endif%}
+                        {% endfor %}</p>
+                      <p class="b-p">{{post.content|striptags|safe|truncatewords:30}}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+      <!-- blogs end -->
+
+
+
+
+
+
+
+
+      <!-- works start -->
+      <div class="works py-5 ">
+        <div class="container">
+          <div class="row row-gap-3 ">
+            <div class="col-12 d-flex justify-content-between">
+              <h5 class="w-h5 py-4 ">Featured works</h5>
+              <a class="b-a" href="{% url 'works' %}">View all</a>
+            </div>
+            {% for work in works  %}
+            <div class="col-lg-3 col-md-3 col-sm-12">
+              <a href="{% url 'work_detail' work.id %}"><img style="width: 100%; height: auto;" src="{{work.image.url}}" alt=""></a>
+            </div>
+
+            <div class="col-lg-9 col-md-9 col-sm-12  d-flex justify-content-around flex-column row-gap-3">
+              <a href="{% url 'work_detail' work.id %}" class="w-h1">{{work.title}}</a>
+              <div class="div d-flex align-items-center gap-4">
+                <h4 class="w-h4 py-1 px-2 ">{{work.created_at | date:'Y'}}</h4>
+                <h5 class="w-p2">{% for tag in work.tags.all %}
+                  {{tag.name | capfirst}}{% if not forloop.last %}, {%endif%}
+                  {% endfor %}</h5>
+              </div>
+              <p class="w-p">{{work.description | striptags | safe | truncatewords:30}}</p>
+              <hr>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- works end -->
+{% endblock  %}

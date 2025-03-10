@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="detail py-md-5 py-3 ">
+    <div class="container2">
+        <div class="row  ">
+            <div class="col-12  d-flex justify-content-around flex-column detail_box">
+                <img width="100%" src="{{work.image.url}}" alt="">
+                <h1 style="margin-bottom: 30px;" class="w-h11">{{work.title}}</h1>
+                <div class="div d-flex align-items-center gap-3">
+                  <h4 style="background: #FF7C7C;" class="w-h4 py-1 px-2 ">{{work.created_at | date:'Y'}}</h4>
+                  <h5 class="w-p2">{% for tag in work.tags.all %}{{tag.name | capfirst}}{% if not forloop.last %}, {%endif%}{% endfor %}</h5>
+                </div>
+                <p style="margin-bottom: 20px;" class="w-p">{{work.description | striptags | safe}}</p>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock  %}

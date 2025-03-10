@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- contact start -->
+<div class="header  ">
+    <div class="container  ">
+      <div class="wrapper row">
+        <div class="contact  py-5 row col-6 ">
+          <form class="">
+            <h1 style="font-size: 50px;">Contact Us</h1>
+            <p class="col-12">If you want to say anything to me, feel free to contact me on the form below.</p>
+            <div  class="form-floating mb-4 ">
+              <input required name="fname" type="text" class="form-control" id="floatingPassword" placeholder="Jonny">
+              <label for="floatingPassword">Name</label>
+            </div>
+            <div class="form-floating mb-4">
+              <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div  class="form-floating mb-4">
+              <input name="subject" type="text" class="form-control" id="floatingPasswor" placeholder="...">
+              <label for="floatingPasswor">Subject</label>
+            </div>
+            <div   class="form-floating mb-4">
+              <textarea required style="height: 150px" class="form-control" name="text" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <label for="floatingTextarea">Message</label>
+            </div>
+            <div   class="mb-4 d-flex justify-content-end mt-3">
+              <button class="btn btn-dark " type="submit">Send message</button>
+            </div>
+          </form>
+        </div>
+        <div class="imgsss d-flex justify-content-end col-6">
+          <img style="height: 90vh;" src="{% static './main/img/contact_imag.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- contact end -->
+{% endblock  %}

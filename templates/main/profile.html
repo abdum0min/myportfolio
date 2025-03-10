@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{user_profile.username}}{% endblock  %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class='alert alert-success'>
+            {{message}}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="container py-5">
+    <div class="row justify-content-center" >
+        <div class="col-md-6 text-center" >
+            {% if user_profile.profile_image %}
+                <img src="{{ user_profile.profile_image.url }}" class="rounded-circle" width="150" height="150" alt="">
+            {% else %}
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="rounded-circle" width="150" height="150" alt="">
+            {% endif %}
+            <h2>{{user_profile.username}}</h2>
+            <p><strong>Full Name</strong> {{user_profile.first_name}} {{user_profile.last_name}}</p>
+            <p><strong>Email</strong> {{user_profile.email}}</p>
+            <p><strong>Bio</strong> {{user_profile.bio|default:'No bio available'}}</p>
+            {% if user == user_profile %}
+                <a href="{% url 'profile_edit' %}" class="btn btn-primary">Edit Profile</a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock  %}
