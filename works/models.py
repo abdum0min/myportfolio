@@ -1,11 +1,11 @@
 from django.db import models
 from tags.models import  Tag
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Work(models.Model):
     title = models.CharField(max_length=255)
-    # description = RichTextField()
+    description = RichTextField()
     tags = models.ManyToManyField('tags.Tag',related_name='Works')
     image = models.ImageField(upload_to='works/',blank=True)    
     created_at = models.DateTimeField(auto_now_add=True)

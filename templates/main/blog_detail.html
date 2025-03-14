@@ -31,16 +31,24 @@
           <div class="comments_box">
             <div class="comment_box">
               <h4 class="comment_h4 fw-bold mb-2">Comments</h4>
-              <form class="comment_form" action="">
-                <div class="d-flex gap-3 align-items-center mb-3">
-                  <img style=" width: 40px;height: 40px;border-radius: 100%;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
-                  <p class="comment_user m-0">Ulug'bek</p>
-                  <p class="m-0" style="font-size: 14px;font-weight: 300;">4 min ago</p>
-                </div>
-                <textarea class="form-control mb-3" name="comment" id="comment" placeholder="write some thing"></textarea>
-                <hr>
-                <button style="background:#FF6464; color: white;" class="btn ">add comment</button>
-              </form>
+              {% if user.is_authenticated %}
+                <form method='post' class="comment_form">
+                  {% csrf_token %}
+                  <div class="d-flex gap-3 align-items-center mb-3 ">
+                    {% if user.profile_image %}
+                      <img src="{{ user.profile_image.url }}" class="rounded-circle" width="50" height="50" alt="">
+                    {% else %}
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"     class="rounded-circle" width="50" height="50" alt="">
+                    {% endif %}
+                    <p class="comment_user m-0">{{user.first_name}} {{user.last_name}}</p>
+                  </div>
+                  <textarea class="form-control mb-3" name="content" id="comment" placeholder="write some thing"></textarea>
+                  <hr>
+                  <button style="background:#FF6464; color: white;" class="btn ">add comment</button>
+                </form>
+              {% else %} 
+                <p>Please <a href="{% url 'login' %}">login</a> to leave comment</p>
+              {% endif %}
             </div>
             <div class="comment">
               <div class="d-flex gap-3 align-items-center mb-3">
