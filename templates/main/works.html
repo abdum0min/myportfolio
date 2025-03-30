@@ -2,6 +2,24 @@
 
 
 {% block content %}
+<style>
+  .page_style{
+    background:#FF6464 ;
+    color:white;
+  }
+  .page_style:hover{
+    background:rgba(157, 156, 153, 0.41);
+    color:#FF6464;
+  }
+  .page_style_active{
+    color:black;
+  }
+  .page_style_active:hover{
+    color:#FF6464;
+    background:rgba(157, 156, 153, 0.41);
+  }
+</style>
+
 <div class="container py-md-5 py-3 ">
     <h1 class="head">Works</h1>
 </div>
@@ -9,24 +27,63 @@
   <div class="works py-md-5 py-3 ">
     <div class="container">
       <div class="row row-gap-3 ">
-        {% for work in works %}
-          <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{% url 'work_detail' work.id %}"><img style="width: 100%; height: auto;" src="{{ work.image.url }}" alt=""></a>
-          </div>
-          <div class="col-lg-9 col-md-9 col-sm-12  d-flex justify-content-around flex-column row-gap-3">
-            <a href="{% url 'work_detail' work.id %}" class="w-h1">{{work.title}}</a>
-            <div class="div d-flex align-items-center gap-4">
-              <h4 class="w-h4 py-1 px-2 ">{{work.created_at | date:'Y' }}</h4>
-              <h5 class="w-p2">{% for tag in work.tags.all %}
-                {{tag.name | capfirst}}{% if not forloop.last %}, {%endif%}
-                {% endfor %}</h5>
+        {% if works %}
+          {% for work in works %}
+            <div class="col-lg-3 col-md-3 col-sm-12">
+              <a href="{% url 'work_detail' work.id %}"><img style="width: 100%; height: auto;" src="{{ work.image.url }}" alt=""></a>
             </div>
-            <p class="w-p">{{ work.description | striptags | safe | truncatewords:30 }}</p>
-            <hr>
-          </div>
-        {% endfor %}
+            <div class="col-lg-9 col-md-9 col-sm-12  d-flex justify-content-around flex-column row-gap-3">
+              <a href="{% url 'work_detail' work.id %}" class="w-h1">{{work.title}}</a>
+              <div class="div d-flex align-items-center gap-4">
+                <h4 class="w-h4 py-1 px-2 ">{{work.created_at | date:'Y' }}</h4>
+                <h5 class="w-p2">{% for tag in work.tags.all %}
+                  {{tag.name | capfirst}}{% if not forloop.last %}, {%endif%}
+                  {% endfor %}</h5>
+              </div>
+              <p class="w-p">{{ work.description | striptags | safe | truncatewords:30 }}</p>
+              <hr>
+            </div>
+          {% endfor %}
+        {% else %}
+            <h1 style="height:calc(100vh - 600px);" class="d-flex justify-content-center ">No works available</h1>
+        {% endif %}
       </div>
     </div>
   </div>
   <!-- works end -->
+
+  {% if page_obj.has_other_pages %}
+  <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+          <!-- Previous Button -->
+          {% if page_obj.has_previous %}
+              <li class="page-item">
+                  <a class="page-link page_style" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+              </li>
+          {% endif %}
+
+          <!-- Pages -->
+          {% for num in page_obj.paginator.page_range %}
+              {% if num >= page_obj.number|add:-2 and num <= page_obj.number|add:2 %}
+                  {% if num == page_obj.number %}
+                      <li class="page-item ">
+                          <span class="page-link page_style">{{ num }}</span>
+                      </li>
+                  {% else %}
+                      <li class="page-item">
+                          <a class="page-link page_style_active" href="?page={{ num }}">{{ num }}</a>
+                      </li>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+
+          <!-- Next Button -->
+          {% if page_obj.has_next %}
+              <li class="page-item">
+                  <a class="page-link page_style" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+              </li>
+          {% endif %}
+      </ul>
+  </nav>
+{% endif %}
 {% endblock  %}

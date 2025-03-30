@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+  .page_style{
+    background:#FF6464 ;
+    color:white;
+  }
+  .page_style:hover{
+    background:rgba(157, 156, 153, 0.41);
+    color:#FF6464;
+  }
+  .page_style_active{
+    color:black;
+  }
+  .page_style_active:hover{
+    color:#FF6464;
+    background:rgba(157, 156, 153, 0.41);
+  }
+</style>
 <div class="container py-md-5 py-3 ">
     <h1 class="head">Blogs</h1>
 </div>
@@ -22,6 +39,42 @@
         </div>
     </div>
   </div>
+
+  {% if page_obj.has_other_pages %}
+  <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+          <!-- Previous Button -->
+          {% if page_obj.has_previous %}
+              <li class="page-item">
+                  <a class="page-link page_style" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+              </li>
+          {% endif %}
+
+          <!-- Pages -->
+          {% for num in page_obj.paginator.page_range %}
+              {% if num >= page_obj.number|add:-2 and num <= page_obj.number|add:2 %}
+                  {% if num == page_obj.number %}
+                      <li class="page-item ">
+                          <span class="page-link page_style">{{ num }}</span>
+                      </li>
+                  {% else %}
+                      <li class="page-item">
+                          <a class="page-link page_style_active" href="?page={{ num }}">{{ num }}</a>
+                      </li>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+
+          <!-- Next Button -->
+          {% if page_obj.has_next %}
+              <li class="page-item">
+                  <a class="page-link page_style" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+              </li>
+          {% endif %}
+      </ul>
+  </nav>
+{% endif %}
+
   <!-- blogs end -->
 {% endblock  %}
 

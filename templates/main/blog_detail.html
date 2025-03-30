@@ -50,22 +50,21 @@
                 <p>Please <a href="{% url 'login' %}">login</a> to leave comment</p>
               {% endif %}
             </div>
-            <div class="comment">
-              <div class="d-flex gap-3 align-items-center mb-3">
-                <img style=" width: 40px;height: 40px;border-radius: 100%;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
-                <p class="comment_user m-0">Ulug'bek</p>
-                <p class="m-0" style="font-size: 14px;font-weight: 300;">4 min ago</p>
+            {% for comment in comments %}
+              <div class="comment">
+                <div class="d-flex gap-3 align-items-center mb-3">
+                  {% if comment.user.profile_image %}
+                    <img src="{{ comment.user.profile_image.url }}" class="rounded-circle" width="50" height="50" alt="">
+                  {% else %}
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"     class="rounded-circle" width="50" height="50" alt="">
+                  {% endif %}
+                  <p class="comment_user m-0">{{comment.user.first_name}} {{comment.user.last_name}}</p>
+                  <p class="m-0" style="font-size: 14px;font-weight: 300;">{{ comment.created_at|timesince }}</p>
+                </div>
+                <p class="comment_text">{{comment.content}}</p>
               </div>
-              <p class="comment_text">Nice post! Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, odio.</p>
-            </div>
-            <div class="comment">
-              <div class="d-flex gap-3 align-items-center mb-3">
-                <img style=" width: 40px;height: 40px;border-radius: 100%;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="">
-                <p class="comment_user m-0">Ulug'bek</p>
-                <p class="m-0" style="font-size: 14px;font-weight: 300;">4 min ago</p>
-              </div>
-              <p  class="comment_text">its good news</p>
-            </div>
+              <hr>
+            {% endfor %}
           </div>
         </div>
       </div>

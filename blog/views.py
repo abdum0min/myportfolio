@@ -9,8 +9,8 @@ class PostListView(ListView):
     model = Post
     template_name = 'main/blog.html'
     context_object_name = 'posts'
-    paginate_by = 5
-
+    paginate_by = 4
+    
 class PostDetailView(DetailView, FormMixin):
     model = Post
     template_name = 'main/blog_detail.html'
@@ -20,7 +20,7 @@ class PostDetailView(DetailView, FormMixin):
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         context['comments'] = self.object.comments.all()
-        context['form'] = self.get_form()
+        # context['form'] = self.get_form()
         return context
     
     def post(self, request, *args, **kwargs):
@@ -35,6 +35,6 @@ class PostDetailView(DetailView, FormMixin):
             comment.blog = self.object
             comment.user = request.user
             comment.save()
-            return redirect('blog',pk=self.object.pk)
+            return redirect('blog_detail',pk=self.object.pk)
         
         return self.render_to_response(self.get_context_data(form=form))

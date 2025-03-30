@@ -2,15 +2,23 @@
 {% load static %}
 {% block content %}
 <!-- contact start -->
-<div class="header  ">
-    <div class="container  ">
+{% if messages %}
+  {% for message in messages %}
+    <div class='alert alert-success'>
+      {{message}}
+    </div>
+  {% endfor %}
+{% endif %}
+<div class="header">
+    <div class="container">
       <div class="wrapper row">
         <div class="contact  py-5 row col-6 ">
-          <form class="">
-            <h1 style="font-size: 50px;">Contact Us</h1>
-            <p class="col-12">If you want to say anything to me, feel free to contact me on the form below.</p>
+          <h1 style="font-size: 50px;">Contact Us</h1>
+          <p class="col-12">If you want to say anything to me, feel free to contact me on the form below.</p>
+          <form method="POST">
+            {% csrf_token %}
             <div  class="form-floating mb-4 ">
-              <input required name="fname" type="text" class="form-control" id="floatingPassword" placeholder="Jonny">
+              <input required name="name" type="text" class="form-control" id="floatingPassword" placeholder="Jonny" value="{{request.user.first_name}}"   {% if user.is_authenticated %}readonly{% endif %}>
               <label for="floatingPassword">Name</label>
             </div>
             <div class="form-floating mb-4">
@@ -18,14 +26,14 @@
               <label for="floatingInput">Email address</label>
             </div>
             <div  class="form-floating mb-4">
-              <input name="subject" type="text" class="form-control" id="floatingPasswor" placeholder="...">
+              <input name="subject" type="text" class="form-control" id="floatingPassword" placeholder="...">
               <label for="floatingPasswor">Subject</label>
             </div>
             <div   class="form-floating mb-4">
-              <textarea required style="height: 150px" class="form-control" name="text" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+              <textarea required style="height: 150px" class="form-control" name="message" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
               <label for="floatingTextarea">Message</label>
             </div>
-            <div   class="mb-4 d-flex justify-content-end mt-3">
+            <div  class="mb-4 d-flex justify-content-end mt-3">
               <button class="btn btn-dark " type="submit">Send message</button>
             </div>
           </form>

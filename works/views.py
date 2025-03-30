@@ -8,6 +8,7 @@ class WorkListView(ListView):
     template_name = 'main/works.html'
     context_object_name = 'works'
     model = Work
+    paginate_by = 5
 
 class WorkDetailView(DetailView):
     template_name = 'main/works_detail.html'
